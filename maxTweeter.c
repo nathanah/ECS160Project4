@@ -123,8 +123,11 @@ int main(int argc, char *argv[]) {
 
     //Print top 10
     for(int i = 0; i < 10; i++){
-      if(top[i])
-        printf("%s", toString(top[i]));
+      if(top[i]){
+        printf("%i\n",i);
+        printf("%s\n", toString(top[i]));
+      }
+
     }
   }
 }
