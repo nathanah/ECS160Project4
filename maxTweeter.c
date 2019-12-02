@@ -61,12 +61,16 @@ void updateTop(int index){
 
 //Finds the given tweeter and increments their count
 void incrementName(char *name){
+  //Searching for matching name
   for(int i=0; i<maxLines; i++){
+    //Matching name found
     if(strcmp(name, nodes[i].name)==0){
       nodes[i].count++;
       updateTop(i);
       return;
     }
+
+    //End of nodes. Adds new node
     if(nodes[i].count == 0){
       strcpy(nodes[i].name, name);
       nodes[i].count = 1;
