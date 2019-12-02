@@ -22,7 +22,6 @@ int countComma(FILE *fp){
   fgets(line, maxLineLength, fp);
 
   int count = 0;
-
   char *token = strtok(line, ",");
 
   while(token != NULL){
@@ -55,11 +54,13 @@ int getNameLoc(FILE *fp){
 //Updates the pointers to the top 10 tweeters given the index of a changed value
 void updateTop(int index){
   int nameFind;
+  //Find if/where this name occurs in the top 10
   for(nameFind=0; nameFind<10; nameFind++){
     if(top[nameFind]==NULL || strcmp(nodes[index].name,top[nameFind]->name)==0){
       break;
     }
   }
+  //Updates top starting at name location or bottom if not in top already
   for(int i=nameFind; i>=0; i--){
     if(top[i]==NULL || (nodes[index].count > top[i]->count)) {
       if(i!=9){
@@ -142,7 +143,7 @@ void parse(char *file){
         memmove(token+i,token+i+1,strlen(token)-i);
       }
     }
-    
+
     //Increment name token
     incrementName(token);
   }
@@ -174,7 +175,7 @@ int main(int argc, char *argv[]) {
         strcat(strcat(strcat(str, top[i]->name), ": "), countBuf);
         printf("%s\n", str);
       }else{
-        break;
+        break; //Break once no more top positions are filled
       }
 
     }
