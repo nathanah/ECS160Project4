@@ -113,12 +113,12 @@ void parse(char *file){
 int main(int argc, char *argv[]) {
   struct countNode nodes[maxLines];
   struct countNode* top[10];
-  if(argc == 0){
+  if(argc == 1){
     perror("No file given\n");
     exit(1);
   }
   else{
-    char *file = argv[0];
+    char *file = argv[1];
     parse(file);
 
     //Print top 10
