@@ -19,7 +19,8 @@ struct countNode* top[10];
 
 //Returns a string output of a name count pair
 char* toString(struct countNode *cn){
-  char *str = malloc(sizeof(char)*(maxNameLength + 2 + maxCountDigits + 1));
+  static char str[maxNameLength + 2 + maxCountDigits + 1];
+  str = "";
   char countBuf[maxCountDigits];
   sprintf(countBuf,"%d",cn->count);
   strcat(strcat(strcat(str, cn->name), ": "), countBuf);
@@ -134,9 +135,7 @@ int main(int argc, char *argv[]) {
     for(int i = 0; i < 10; i++){
       if(top[i]){
         printf("%i\n",i);
-        char * temp = toString(top[i]);
-        printf("%s\n", temp);
-        free(temp);
+        printf("%s\n", toString(top[i]));
       }else{
         break;
       }
