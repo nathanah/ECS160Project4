@@ -134,7 +134,9 @@ int main(int argc, char *argv[]) {
     for(int i = 0; i < 10; i++){
       if(top[i]){
         printf("%i\n",i);
-        printf("%s\n", toString(top[i]));
+        char * temp = toString(top[i]);
+        printf("%s\n", temp);
+        free(temp);
       }else{
         break;
       }
