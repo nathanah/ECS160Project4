@@ -18,13 +18,7 @@ struct countNode nodes[maxLines];
 struct countNode* top[10];
 
 //Returns a string output of a name count pair
-char* toString(struct countNode *cn){
-  char *str = malloc(sizeof(char) * maxNameLength + 2 + maxCountDigits + 1);
-  char countBuf[maxCountDigits];
-  sprintf(countBuf,"%d",cn->count);
-  strcat(strcat(strcat(str, cn->name), ": "), countBuf);
-  return str;
-}
+
 
 //Returns the number of commas before the name field
 int getNameLoc(FILE *fp){
@@ -134,7 +128,11 @@ int main(int argc, char *argv[]) {
     for(int i = 0; i < 10; i++){
       if(top[i]){
         printf("%i\n",i);
-        printf("%s\n", toString(top[i]));
+        char countBuf[maxCountDigits];
+        sprintf(countBuf,"%d",cn->count);
+        char str[maxNameLength + 2 + maxCountDigits + 1];
+        strcat(strcat(strcat(str, cn->name), ": "), countBuf);
+        printf("%s\n", str);
       }else{
         break;
       }
