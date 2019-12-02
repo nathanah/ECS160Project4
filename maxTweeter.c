@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
 #define maxNameLength 1024
 #define maxCountDigits 5 //assumes max of 99999 tweets from one tweeter
@@ -11,14 +11,17 @@
 struct countNode{
   char name[maxNameLength];
   int count;
-}
+};
+
+struct countNode nodes[maxLines];
+struct countNode* top[10];
 
 //Returns a string output of a name count pair
-char* toString(countNode *cn){
+char* toString(struct countNode *cn){
   char str[maxNameLength + 2 + maxCountDigits + 1];
   char countBuf[maxCountDigits];
   itoa(cn->count, countBuf, 10);
-  strncat(strncat(strncat(str,cn->name), ": "), countBuf);
+  strcat(strcat(strcat(str, cn->name), ": "), countBuf);
   return str;
 }
 
@@ -27,7 +30,7 @@ int getNameLoc(FILE *fp){
   char line[maxLineLength];
   fgets(line, maxLineLength, fp);
 
-  count = 0;
+  int count = 0;
   char *token = strtok(line, ",");
 
   while(token != NULL){
@@ -48,7 +51,7 @@ void updateTop(int index){
       if(i!=9){
         top[i+1] = top[i];
       }
-      top[i] = &nodes[index]
+      top[i] = &nodes[index];
     }
   }
 }
@@ -62,7 +65,7 @@ void incrementName(char *name){
       return;
     }
     if(nodes[i].count == 0){
-      nodes[i].name = name;
+      strcpy(nodes[i].name, name);
       nodes[i].count = 1;
       updateTop(i);
       return;
@@ -74,8 +77,7 @@ void incrementName(char *name){
 //Parses csv to count tweeters
 void parse(char *file){
   FILE *fp;
-  char *line = NULL;
-  size_t = len = 0;
+  char line[maxLineLength];
 
   //Opens file for reading
   fp = fopen(file, "r");
@@ -85,15 +87,14 @@ void parse(char *file){
     exit(1);
   }
 
-  char line[maxLineLength];
   //first read to find name column
-  int nameLoc = getnameLoc(fp);
+  int nameLoc = getNameLoc(fp);
 
   //Reading lines
   while(fgets(line, maxLineLength, fp)){
     //get name col from line
     char *token = strtok(line, ",");
-    for(i=0; i<nameLoc; i++){
+    for(int i=0; i<nameLoc; i++){
       token = strtok(NULL, ",");
       //if line doesn't have enough commas
       if(token==NULL){
@@ -109,8 +110,8 @@ void parse(char *file){
 
 
 int main(int argc, char *argv[]) {
-  countNode nodes[maxLines];
-  countNode* top[10];
+  struct countNode nodes[maxLines];
+  struct countNode* top[10];
   if(argc == 0){
     perror("No file given\n");
     exit(1);
@@ -120,9 +121,9 @@ int main(int argc, char *argv[]) {
     parse(file);
 
     //Print top 10
-    for(i = 0; i < 10; i++){
+    for(int i = 0; i < 10; i++){
       if(top[i])
-        printf(toString(top[i]));
+        printf("%s", toString(top[i]));
     }
   }
 }
