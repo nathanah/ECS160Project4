@@ -42,7 +42,7 @@ int getNameLoc(FILE *fp){
 //Updates the pointers to the top 10 tweeters given the index of a changed value
 void updateTop(int index){
   for(int i=9; i>=0; i--){
-    if((top[i]==NULL || (nodes[index].count > top[i]->count)) && strcmp(nodes[index].name,top[i]->name)!=0) {
+    if(top[i]==NULL || (nodes[index].count > top[i]->count)) {
       if(i!=9){
         //printf("we found a new top\n");
         top[i+1] = top[i];
