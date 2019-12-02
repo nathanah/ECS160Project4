@@ -132,7 +132,6 @@ int main(int argc, char *argv[]) {
     //Print top 10
     for(int i = 0; i < 10; i++){
       if(top[i]){
-        printf("%i\n",i);
         char countBuf[maxCountDigits];
         sprintf(countBuf,"%d",top[i]->count);
         char str[maxNameLength + 2 + maxCountDigits + 1];
