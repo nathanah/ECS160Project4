@@ -49,7 +49,7 @@ void updateTop(int index){
       }
 
       top[i] = &nodes[index];
-      printf("Updated top %s\n",toString(top[i]));
+      //printf("Updated top %s\n",toString(top[i]));
     }
   }
 }
@@ -129,9 +129,9 @@ int main(int argc, char *argv[]) {
       if(top[i]){
         printf("%i\n",i);
         char countBuf[maxCountDigits];
-        sprintf(countBuf,"%d",cn->count);
+        sprintf(countBuf,"%d",top[i]->count);
         char str[maxNameLength + 2 + maxCountDigits + 1];
-        strcat(strcat(strcat(str, cn->name), ": "), countBuf);
+        strcat(strcat(strcat(str, top[i]->name), ": "), countBuf);
         printf("%s\n", str);
       }else{
         break;
