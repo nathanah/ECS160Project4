@@ -43,7 +43,7 @@ int getNameLoc(FILE *fp){
 void updateTop(int index){
   int nameFind;
   for(nameFind=0; nameFind<10; nameFind++){
-    if(strcmp(nodes[index]->name,top[nameFind]->name)==0){
+    if(strcmp(nodes[index].name,top[nameFind]->name)==0){
       break;
     }
   }
