@@ -50,8 +50,10 @@ void updateTop(int index){
   for(int i=9; i>=0; i--){
     if(top[i]==NULL || (nodes[index].count > top[i]->count)) {
       if(i!=9){
+        printf("we found a new top\n");
         top[i+1] = top[i];
       }
+      printf("Updated top\n");
       top[i] = &nodes[index];
     }
   }
@@ -126,6 +128,8 @@ int main(int argc, char *argv[]) {
       if(top[i]){
         printf("%i\n",i);
         printf("%s\n", toString(top[i]));
+      }else{
+        break;
       }
 
     }
