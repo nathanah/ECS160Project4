@@ -118,8 +118,8 @@ void parse(char *file){
 
     //get name col from line
     char *token = strtok(line, ",");
+
     for(int i=0; i<nameLoc; i++){
-      token = strtok(NULL, ",");
 
       if(token==NULL){
         perror("Not enough columns\n");
@@ -132,7 +132,14 @@ void parse(char *file){
         }
       }
 
+      token = strtok(NULL, ",");
     }
+
+    if(token==NULL){
+      perror("Not enough columns\n");
+      exit(1);
+    }
+    
     //increment name token
     incrementName(token);
   }
