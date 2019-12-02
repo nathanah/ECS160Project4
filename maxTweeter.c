@@ -35,7 +35,7 @@ int getNameLoc(FILE *fp){
   char *token = strtok(line, ",");
 
   while(token != NULL){
-    if(strcmp(token, "name")==0){
+    if(strcmp(token, "name")==0 || strcmp(token, "\"name\"")==0){
       return count;
     }
     token = strtok(NULL, ",");
