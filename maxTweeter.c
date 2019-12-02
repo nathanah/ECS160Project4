@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define maxNameLength 1024
 #define maxCountDigits 5 //assumes max of 99999 tweets from one tweeter
@@ -18,7 +19,7 @@ struct countNode* top[10];
 
 //Returns a string output of a name count pair
 char* toString(struct countNode *cn){
-  char str[maxNameLength + 2 + maxCountDigits + 1];
+  static char str[maxNameLength + 2 + maxCountDigits + 1];
   char countBuf[maxCountDigits];
   sprintf(countBuf,"%d",cn->count);
   strcat(strcat(strcat(str, cn->name), ": "), countBuf);
