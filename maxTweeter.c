@@ -68,14 +68,10 @@ void incrementName(char *name){
       nodes[i].count++;
       updateTop(i);
       return;
-<<<<<<< HEAD
     }
 
     //End of nodes. Adds new node
     if(nodes[i].count == 0){
-=======
-    }else if(nodes[i].count == 0){
->>>>>>> c536ecbb708df1fb7801f600e6a0a8cb4ae02499
       strcpy(nodes[i].name, name);
       nodes[i].count = 1;
       updateTop(i);
@@ -121,8 +117,10 @@ void parse(char *file){
 
 
 int main(int argc, char *argv[]) {
-  struct countNode nodes[maxLines];
-  struct countNode* top[10];
+  //Initialize top to NULL
+  for(int i=0; i<10; i++){
+    top[i] = NULL;
+  }
   if(argc == 1){
     perror("No file given\n");
     exit(1);
