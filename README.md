@@ -1,2 +1,1 @@
-# Prabhjot Sandhu
-# Nathan Hoffman
+# Nathan Hoffman, Prabhjot Sandhu
