@@ -17,8 +17,6 @@ struct countNode{
 struct countNode nodes[maxLines];
 struct countNode* top[10];
 
-//Returns a string output of a name count pair
-
 
 //Returns the number of commas before the name field
 int getNameLoc(FILE *fp){
@@ -35,8 +33,8 @@ int getNameLoc(FILE *fp){
     token = strtok(NULL, ",");
     count++;
   }
-  perror("name not found in header\n");
-  exit(1);
+  perror("Name not found in header\n");
+  exit(0);
 }
 
 //Updates the pointers to the top 10 tweeters given the index of a changed value
@@ -54,7 +52,6 @@ void updateTop(int index){
       }
 
       top[i] = &nodes[index];
-      //printf("Updated top %s\n",toString(top[i]));
     }
   }
 }
@@ -91,14 +88,18 @@ void parse(char *file){
   //Checks if fopen worked
   if(fp == NULL){
     perror("File not found\n");
-    exit(1);
+    exit(0);
   }
 
   //first read to find name column
   int nameLoc = getNameLoc(fp);
 
   //Reading lines
-  while(fgets(line, maxLineLength, fp)){
+  for(int lines=0; lines<maxLines; lines++){
+    if(fgets(line, maxLineLength, fp)==NULL){
+      break;
+    }
+
     //get name col from line
     char *token = strtok(line, ",");
     for(int i=0; i<nameLoc; i++){
@@ -112,7 +113,8 @@ void parse(char *file){
 
       //if line doesn't have enough commas
       if(token==NULL){
-        break;
+        perror("Not enough columns\n");
+        exit(0);
       }
     }
     //increment name token
@@ -130,7 +132,7 @@ int main(int argc, char *argv[]) {
   }
   if(argc == 1){
     perror("No file given\n");
-    exit(1);
+    exit(0);
   }
   else{
     char *file = argv[1];
