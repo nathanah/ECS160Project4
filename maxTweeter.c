@@ -140,10 +140,7 @@ int main(int argc, char *argv[]) {
 
         for(int i = 0; i<strlen(str);i++){
           if(str[i]=='\"'){
-            for(int x = 0; x<strlen(str)-i-1;i++){
-              str[x]=str[x+1];
-            }
-            str[i] = '\0';
+            memmove(str+i,str+i+1,strlen(str)-i);
           }
         }
 
