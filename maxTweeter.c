@@ -103,6 +103,13 @@ void parse(char *file){
     char *token = strtok(line, ",");
     for(int i=0; i<nameLoc; i++){
       token = strtok(NULL, ",");
+
+      for(int i = 0; i<strlen(token);i++){
+        if(token[i]=='\"'){
+          memmove(token+i,token+i+1,strlen(token)-i);
+        }
+      }
+
       //if line doesn't have enough commas
       if(token==NULL){
         break;
@@ -136,15 +143,7 @@ int main(int argc, char *argv[]) {
         sprintf(countBuf,"%d",top[i]->count);
         char str[maxNameLength + 2 + maxCountDigits + 1];
         str[0] = '\0';
-        strcat(str, top[i]->name);
-
-        for(int i = 0; i<strlen(str);i++){
-          if(str[i]=='\"'){
-            memmove(str+i,str+i+1,strlen(str)-i);
-          }
-        }
-
-        strcat(strcat(str, ": "), countBuf);
+        strcat(strcat(strcat(str, top[i]->name), ": "), countBuf);
         printf("%s\n", str);
       }else{
         break;
