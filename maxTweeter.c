@@ -68,10 +68,14 @@ void incrementName(char *name){
       nodes[i].count++;
       updateTop(i);
       return;
+<<<<<<< HEAD
     }
 
     //End of nodes. Adds new node
     if(nodes[i].count == 0){
+=======
+    }else if(nodes[i].count == 0){
+>>>>>>> c536ecbb708df1fb7801f600e6a0a8cb4ae02499
       strcpy(nodes[i].name, name);
       nodes[i].count = 1;
       updateTop(i);
