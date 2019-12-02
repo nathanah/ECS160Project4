@@ -136,7 +136,18 @@ int main(int argc, char *argv[]) {
         sprintf(countBuf,"%d",top[i]->count);
         char str[maxNameLength + 2 + maxCountDigits + 1];
         str[0] = '\0';
-        strcat(strcat(strcat(str, top[i]->name), ": "), countBuf);
+        strcat(str, top[i]->name);
+
+        for(int i = 0; i<strlen(str);i++){
+          if(str[i]=='\"'){
+            for(int x = 0; x<strlen(str)-i-1;i++){
+              str[x]=str[x+1];
+            }
+            str[i] = '\0';
+          }
+        }
+
+        strcat(strcat(str, ": "), countBuf);
         printf("%s\n", str);
       }else{
         break;
