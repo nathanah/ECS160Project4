@@ -66,8 +66,7 @@ void incrementName(char *name){
       nodes[i].count++;
       updateTop(i);
       return;
-    }
-    if(nodes[i].count == 0){
+    }else if(nodes[i].count == 0){
       strcpy(nodes[i].name, name);
       nodes[i].count = 1;
       updateTop(i);
