@@ -121,17 +121,17 @@ void parse(char *file){
     for(int i=0; i<nameLoc; i++){
       token = strtok(NULL, ",");
 
+      if(token==NULL){
+        perror("Not enough columns\n");
+        exit(1);
+      }
+
       for(int i = 0; i<strlen(token);i++){
         if(token[i]=='\"'){
           memmove(token+i,token+i+1,strlen(token)-i);
         }
       }
 
-      //if line doesn't have enough commas
-      if(token==NULL){
-        perror("Not enough columns\n");
-        exit(1);
-      }
     }
     //increment name token
     incrementName(token);
