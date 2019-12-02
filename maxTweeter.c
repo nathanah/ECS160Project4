@@ -20,7 +20,7 @@ struct countNode* top[10];
 char* toString(struct countNode *cn){
   char str[maxNameLength + 2 + maxCountDigits + 1];
   char countBuf[maxCountDigits];
-  itoa(cn->count, countBuf, 10);
+  sprintf(countBuf,"%d",cn->count);
   strcat(strcat(strcat(str, cn->name), ": "), countBuf);
   return str;
 }
