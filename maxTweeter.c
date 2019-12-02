@@ -19,7 +19,7 @@ struct countNode* top[10];
 
 //Returns a string output of a name count pair
 char* toString(struct countNode *cn){
-  static char str[maxNameLength + 2 + maxCountDigits + 1];
+  static char str[maxNameLength + 2 + maxCountDigits + 1] = NULL;
   char countBuf[maxCountDigits];
   sprintf(countBuf,"%d",cn->count);
   strcat(strcat(strcat(str, cn->name), ": "), countBuf);
